@@ -51,17 +51,4 @@ public class EmailNotificationFacadeTest {
         .sendEmailNotificationViaUserService(
             RC_GROUP_ID, KEYCLOAK_ACCESS_TOKEN, Optional.ofNullable((TenantContext.getCurrentTenant())));
   }
-
-  @Test
-  public void
-      sendFeedbackEmailNotification_Should_PassNewFeedbMsgNotificationUrl2NotificationHelper() {
-
-    when(authenticatedUser.getAccessToken()).thenReturn(KEYCLOAK_ACCESS_TOKEN);
-
-    emailNotificationFacade.sendFeedbackEmailNotification(RC_GROUP_ID);
-
-    verify(emailNotificationHelper, times(1))
-        .sendEmailFeedbackNotificationViaUserService(
-            RC_GROUP_ID, KEYCLOAK_ACCESS_TOKEN, Optional.ofNullable(TenantContext.getCurrentTenant()));
-  }
 }

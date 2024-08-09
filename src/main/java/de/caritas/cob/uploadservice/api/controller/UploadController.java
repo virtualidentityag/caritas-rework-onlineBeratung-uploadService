@@ -10,11 +10,7 @@ import de.caritas.cob.uploadservice.api.model.MasterKeyDto;
 import de.caritas.cob.uploadservice.api.service.EncryptionService;
 import de.caritas.cob.uploadservice.api.service.LogService;
 import de.caritas.cob.uploadservice.generated.api.controller.UploadsApi;
-import io.swagger.annotations.Api;
-import java.util.Objects;
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -96,56 +92,6 @@ public class UploadController implements UploadsApi {
             .build();
 
     uploadFacade.uploadFileToRoom(
-        rocketChatCredentials,
-        rocketChatUploadParameter,
-        parseBoolean(sendNotification),
-        t,
-        fileHeader
-    );
-
-    return new ResponseEntity<>(HttpStatus.CREATED);
-  }
-
-  /**
-   * Upload a file to a Rocket.Chat feedback room with a text message.
-   *
-   * @param feedbackRoomId Rocket.Chat feedback room id
-   * @param rcToken Rocket.Chat token
-   * @param rcUserId Rocket.Chat user id
-   * @param file The file object as {@link MultipartFile}
-   * @param sendNotification Flag, whether an email notification should be sent or not
-   * @param msg The message
-   * @param description The description
-   * @param tmId Rocket.Chat thread message id
-   * @return a ResponseEntity instance
-   */
-  @TempCleanup
-  @Override
-  public ResponseEntity<Void> uploadFileToFeedbackRoom(
-      @PathVariable("feedbackRoomId") String feedbackRoomId,
-      @RequestHeader String rcToken,
-      @RequestHeader String rcUserId,
-      @RequestPart MultipartFile file,
-      @RequestParam String sendNotification,
-      @RequestPart(required = false) String t,
-      @RequestPart(required = false) String fileHeader,
-      @RequestParam(required = false) String msg,
-      @RequestParam(required = false) String description,
-      @RequestParam(required = false) String tmId) {
-
-    RocketChatCredentials rocketChatCredentials =
-        RocketChatCredentials.builder().rocketChatUserId(rcUserId).rocketChatToken(rcToken).build();
-
-    RocketChatUploadParameter rocketChatUploadParameter =
-        RocketChatUploadParameter.builder()
-            .roomId(feedbackRoomId)
-            .description(description)
-            .message(msg)
-            .file(file)
-            .tmId(tmId)
-            .build();
-
-    uploadFacade.uploadFileToFeedbackRoom(
         rocketChatCredentials,
         rocketChatUploadParameter,
         parseBoolean(sendNotification),

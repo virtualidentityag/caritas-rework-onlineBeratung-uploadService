@@ -42,16 +42,4 @@ public class EmailNotificationFacade {
         authenticatedUser.getAccessToken(),
         Optional.ofNullable(TenantContext.getCurrentTenant()));
   }
-
-  /**
-   * Sends a new feedback message notification via the UserService (user data needed for sending the
-   * mail will be read by the UserService, which in turn calls the UploadService).
-   *
-   * @param rcGroupId
-   */
-  public void sendFeedbackEmailNotification(String rcGroupId) {
-    emailNotificationHelper.sendEmailFeedbackNotificationViaUserService(
-        rcGroupId,
-        authenticatedUser.getAccessToken(), Optional.ofNullable(TenantContext.getCurrentTenant()));
-  }
 }
