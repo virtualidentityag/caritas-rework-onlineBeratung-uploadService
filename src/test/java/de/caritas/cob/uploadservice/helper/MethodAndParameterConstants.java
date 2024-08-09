@@ -19,15 +19,4 @@ public class MethodAndParameterConstants {
         String.class,
         String.class
       };
-  public static final Class<?>[] UPLOAD_FILE_TO_FEEDBACK_ROOM_METHOD_PARAMS =
-      new Class[] {
-        String.class,
-        String.class,
-        String.class,
-        MultipartFile.class,
-        String.class,
-        String.class,
-        String.class,
-        String.class
-      };
 }
