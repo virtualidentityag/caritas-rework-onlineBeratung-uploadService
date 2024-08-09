@@ -20,9 +20,6 @@ public class EmailNotificationFacade {
   @Value("${user.service.api.new.message.notification}")
   private String userServiceApiSendNewMessageNotificationUrl;
 
-  @Value("${user.service.api.new.feedback.message.notification}")
-  private String userServiceApiSendNewFeedbackMessageNotificationUrl;
-
   @Autowired
   public EmailNotificationFacade(
       EmailNotificationHelper emailNotificationHelper, AuthenticatedUser authenticatedUser) {
