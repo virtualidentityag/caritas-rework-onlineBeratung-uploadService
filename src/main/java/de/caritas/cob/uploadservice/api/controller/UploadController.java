@@ -10,6 +10,7 @@ import de.caritas.cob.uploadservice.api.model.MasterKeyDto;
 import de.caritas.cob.uploadservice.api.service.EncryptionService;
 import de.caritas.cob.uploadservice.api.service.LogService;
 import de.caritas.cob.uploadservice.generated.api.controller.UploadsApi;
+import io.swagger.annotations.Api;
 import javax.validation.Valid;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
