@@ -24,10 +24,6 @@ public class EmailNotificationFacadeTest {
       "userServiceApiSendNewMessageNotificationUrl";
   private static final String NOTIFICATION_API_URL =
       "http://caritas.local/service/users/mails/messages/new";
-  private static final String FIELD_NAME_NEW_FEEDBACK_MESSAGE_NOTIFICATION =
-      "userServiceApiSendNewFeedbackMessageNotificationUrl";
-  private static final String FEEDBACK_NOTIFICATION_API_URL =
-      "http://caritas.local/service/users/mails/messages/feedback/new";
   private static final String RC_GROUP_ID = "fR2Rz7dmWmHdXE8uz";
 
   @Mock private EmailNotificationHelper emailNotificationHelper;
@@ -37,7 +33,6 @@ public class EmailNotificationFacadeTest {
   @Before
   public void setup() throws NoSuchFieldException, SecurityException {
     ReflectionTestUtils.setField(emailNotificationFacade, FIELD_NAME_NEW_MESSAGE_NOTIFICATION, NOTIFICATION_API_URL);
-    ReflectionTestUtils.setField(emailNotificationFacade, FIELD_NAME_NEW_FEEDBACK_MESSAGE_NOTIFICATION, FEEDBACK_NOTIFICATION_API_URL);
   }
 
   @Test
@@ -50,18 +45,5 @@ public class EmailNotificationFacadeTest {
     verify(emailNotificationHelper, times(1))
         .sendEmailNotificationViaUserService(
             RC_GROUP_ID, KEYCLOAK_ACCESS_TOKEN, Optional.ofNullable((TenantContext.getCurrentTenant())));
-  }
-
-  @Test
-  public void
-      sendFeedbackEmailNotification_Should_PassNewFeedbMsgNotificationUrl2NotificationHelper() {
-
-    when(authenticatedUser.getAccessToken()).thenReturn(KEYCLOAK_ACCESS_TOKEN);
-
-    emailNotificationFacade.sendFeedbackEmailNotification(RC_GROUP_ID);
-
-    verify(emailNotificationHelper, times(1))
-        .sendEmailFeedbackNotificationViaUserService(
-            RC_GROUP_ID, KEYCLOAK_ACCESS_TOKEN, Optional.ofNullable(TenantContext.getCurrentTenant()));
   }
 }

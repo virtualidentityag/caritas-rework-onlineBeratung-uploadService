@@ -1,7 +1,6 @@
 package de.caritas.cob.uploadservice.api.controller;
 
 import static de.caritas.cob.uploadservice.helper.PathConstants.PATH_UPDATE_KEY;
-import static de.caritas.cob.uploadservice.helper.PathConstants.PATH_UPLOAD_FILE_TO_FEEDBACK_ROOM;
 import static de.caritas.cob.uploadservice.helper.PathConstants.PATH_UPLOAD_FILE_TO_ROOM;
 import static de.caritas.cob.uploadservice.helper.TestConstants.CSRF_COOKIE;
 import static de.caritas.cob.uploadservice.helper.TestConstants.CSRF_HEADER;
@@ -147,54 +146,6 @@ public class UploadControllerAuthorizationTestIT {
 
     mvc.perform(
         post(PATH_UPLOAD_FILE_TO_ROOM + "/" + RC_ROOM_ID)
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isForbidden());
-
-    verifyNoMoreInteractions(rocketChatService);
-    verifyNoMoreInteractions(uploadFacade);
-  }
-
-  @Test
-  public void uploadFileToFeedbackRoom_Should_Return401AndCallNoMethods_WhenNoKeycloakAuthorization()
-      throws Exception {
-
-    mvc.perform(
-        post(PATH_UPLOAD_FILE_TO_FEEDBACK_ROOM + "/" + RC_ROOM_ID)
-            .cookie(csrfCookie)
-            .header(CSRF_HEADER, CSRF_VALUE)
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isUnauthorized());
-
-    verifyNoMoreInteractions(rocketChatService);
-    verifyNoMoreInteractions(uploadFacade);
-  }
-
-  @Test
-  @WithMockUser
-  public void uploadFileToFeedbackRoom_Should_Return403AndCallNoMethods_WhenNoUserOrConsultantAuthority()
-      throws Exception {
-
-    mvc.perform(
-        post(PATH_UPLOAD_FILE_TO_FEEDBACK_ROOM + "/" + RC_ROOM_ID)
-            .cookie(csrfCookie)
-            .header(CSRF_HEADER, CSRF_VALUE)
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isForbidden());
-
-    verifyNoMoreInteractions(rocketChatService);
-    verifyNoMoreInteractions(uploadFacade);
-  }
-
-  @Test
-  @WithMockUser(authorities = {AuthorityValue.CONSULTANT_DEFAULT, AuthorityValue.USER_DEFAULT})
-  public void uploadFileToFeedbackRoom_Should_ReturnForbiddenAndCallNoMethods_WhenNoCsrfTokens()
-      throws Exception {
-
-    mvc.perform(
-        post(PATH_UPLOAD_FILE_TO_FEEDBACK_ROOM + "/" + RC_ROOM_ID)
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isForbidden());

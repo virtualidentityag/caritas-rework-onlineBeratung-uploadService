@@ -4,7 +4,6 @@ import static de.caritas.cob.uploadservice.api.authorization.Authority.Authority
 import static de.caritas.cob.uploadservice.api.authorization.Authority.AuthorityValue.CONSULTANT_DEFAULT;
 import static de.caritas.cob.uploadservice.api.authorization.Authority.AuthorityValue.TECHNICAL_DEFAULT;
 import static de.caritas.cob.uploadservice.api.authorization.Authority.AuthorityValue.USER_DEFAULT;
-import static de.caritas.cob.uploadservice.api.authorization.Authority.AuthorityValue.USE_FEEDBACK;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
@@ -23,7 +22,6 @@ public enum Authority {
 
   USER(UserRole.USER, singletonList(USER_DEFAULT)),
   CONSULTANT(UserRole.CONSULTANT, singletonList(CONSULTANT_DEFAULT)),
-  U25_CONSULTANT(UserRole.PEER_CONSULTANT, singletonList(USE_FEEDBACK)),
   TECHNICAL(UserRole.TECHNICAL, singletonList(TECHNICAL_DEFAULT)),
   ANONYMOUS(UserRole.ANONYMOUS, singletonList(ANONYMOUS_DEFAULT));
 
@@ -54,7 +52,6 @@ public enum Authority {
 
     public static final String CONSULTANT_DEFAULT = PREFIX + "CONSULTANT_DEFAULT";
     public static final String USER_DEFAULT = PREFIX + "USER_DEFAULT";
-    public static final String USE_FEEDBACK = PREFIX + "USE_FEEDBACK";
     public static final String TECHNICAL_DEFAULT = PREFIX + "TECHNICAL_DEFAULT";
     public static final String ANONYMOUS_DEFAULT = PREFIX + "ANONYMOUS_DEFAULT";
 
