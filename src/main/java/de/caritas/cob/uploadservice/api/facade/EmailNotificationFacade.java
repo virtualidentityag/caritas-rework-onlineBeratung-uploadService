@@ -20,9 +20,6 @@ public class EmailNotificationFacade {
   @Value("${user.service.api.new.message.notification}")
   private String userServiceApiSendNewMessageNotificationUrl;
 
-  @Value("${user.service.api.new.feedback.message.notification}")
-  private String userServiceApiSendNewFeedbackMessageNotificationUrl;
-
   @Autowired
   public EmailNotificationFacade(
       EmailNotificationHelper emailNotificationHelper, AuthenticatedUser authenticatedUser) {
@@ -41,17 +38,5 @@ public class EmailNotificationFacade {
         rcGroupId,
         authenticatedUser.getAccessToken(),
         Optional.ofNullable(TenantContext.getCurrentTenant()));
-  }
-
-  /**
-   * Sends a new feedback message notification via the UserService (user data needed for sending the
-   * mail will be read by the UserService, which in turn calls the UploadService).
-   *
-   * @param rcGroupId
-   */
-  public void sendFeedbackEmailNotification(String rcGroupId) {
-    emailNotificationHelper.sendEmailFeedbackNotificationViaUserService(
-        rcGroupId,
-        authenticatedUser.getAccessToken(), Optional.ofNullable(TenantContext.getCurrentTenant()));
   }
 }

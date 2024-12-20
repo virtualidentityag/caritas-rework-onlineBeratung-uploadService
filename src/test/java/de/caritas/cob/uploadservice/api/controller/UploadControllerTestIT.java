@@ -1,7 +1,6 @@
 package de.caritas.cob.uploadservice.api.controller;
 
 import static de.caritas.cob.uploadservice.helper.PathConstants.PATH_UPDATE_KEY;
-import static de.caritas.cob.uploadservice.helper.PathConstants.PATH_UPLOAD_FILE_TO_FEEDBACK_ROOM;
 import static de.caritas.cob.uploadservice.helper.PathConstants.PATH_UPLOAD_FILE_TO_ROOM;
 import static de.caritas.cob.uploadservice.helper.TestConstants.FORM_PARAM_DESCRIPTION;
 import static de.caritas.cob.uploadservice.helper.TestConstants.FORM_PARAM_DESCRIPTION_VALUE;
@@ -94,25 +93,6 @@ public class UploadControllerTestIT {
   }
 
   @Test
-  public void uploadFileToFeedbackRoom_Should_ReturnNotFound_WhenRoomIdIsMissing()
-      throws Exception {
-
-    MockPart fileToUpload = new MockPart(FORM_PARAM_FILE, "fileToUpload", "content".getBytes());
-
-    mvc.perform(
-            multipart(PATH_UPLOAD_FILE_TO_FEEDBACK_ROOM)
-                .part(fileToUpload)
-                .param(FORM_PARAM_SEND_NOTIFICATION, FORM_PARAM_SEND_NOTIFICATION_TRUE)
-                .param(FORM_PARAM_DESCRIPTION, FORM_PARAM_DESCRIPTION_VALUE)
-                .param(FORM_PARAM_MESSAGE, FORM_PARAM_MESSAGE_VALUE)
-                .param(FORM_PARAM_TMID, FORM_PARAM_TMID_VALUE)
-                .contentType(MediaType.MULTIPART_FORM_DATA)
-                .header(RC_TOKEN_HEADER_PARAMETER_NAME, RC_TOKEN)
-                .header(RC_USER_ID_HEADER_PARAMETER_NAME, RC_USER_ID))
-        .andExpect(status().isNotFound());
-  }
-
-  @Test
   public void uploadFileToRoom_Should_ReturnBadRequest_WhenFileIsMissing() throws Exception {
 
     mvc.perform(
@@ -146,64 +126,12 @@ public class UploadControllerTestIT {
   }
 
   @Test
-  public void uploadFileToFeedbackRoom_Should_ReturnBadRequest_WhenFileIsMissing()
-      throws Exception {
-
-    mvc.perform(
-            multipart(PATH_UPLOAD_FILE_TO_FEEDBACK_ROOM + "/" + RC_ROOM_ID)
-                .param(FORM_PARAM_SEND_NOTIFICATION, FORM_PARAM_SEND_NOTIFICATION_TRUE)
-                .param(FORM_PARAM_DESCRIPTION, FORM_PARAM_DESCRIPTION_VALUE)
-                .param(FORM_PARAM_MESSAGE, FORM_PARAM_MESSAGE_VALUE)
-                .param(FORM_PARAM_TMID, FORM_PARAM_TMID_VALUE)
-                .contentType(MediaType.MULTIPART_FORM_DATA)
-                .header(RC_TOKEN_HEADER_PARAMETER_NAME, RC_TOKEN)
-                .header(RC_USER_ID_HEADER_PARAMETER_NAME, RC_USER_ID))
-        .andExpect(status().isBadRequest());
-  }
-
-  @Test
-  public void uploadFileToFeedbackRoom_Should_ReturnBadRequest_WhenSendNotificationIsMissing()
-      throws Exception {
-
-    MockPart fileToUpload = new MockPart(FORM_PARAM_FILE, "fileToUpload", "content".getBytes());
-
-    mvc.perform(
-            multipart(PATH_UPLOAD_FILE_TO_FEEDBACK_ROOM + "/" + RC_ROOM_ID)
-                .part(fileToUpload)
-                .param(FORM_PARAM_DESCRIPTION, FORM_PARAM_DESCRIPTION_VALUE)
-                .param(FORM_PARAM_MESSAGE, FORM_PARAM_MESSAGE_VALUE)
-                .param(FORM_PARAM_TMID, FORM_PARAM_TMID_VALUE)
-                .contentType(MediaType.MULTIPART_FORM_DATA)
-                .header(RC_TOKEN_HEADER_PARAMETER_NAME, RC_TOKEN)
-                .header(RC_USER_ID_HEADER_PARAMETER_NAME, RC_USER_ID))
-        .andExpect(status().isBadRequest());
-  }
-
-  @Test
   public void uploadFileToRoom_Should_ReturnOk_WhenValidRequest() throws Exception {
 
     MockPart fileToUpload = new MockPart(FORM_PARAM_FILE, "fileToUpload", "content".getBytes());
 
     mvc.perform(
             multipart(PATH_UPLOAD_FILE_TO_ROOM + "/" + RC_ROOM_ID)
-                .part(fileToUpload)
-                .param(FORM_PARAM_SEND_NOTIFICATION, FORM_PARAM_SEND_NOTIFICATION_TRUE)
-                .param(FORM_PARAM_DESCRIPTION, FORM_PARAM_DESCRIPTION_VALUE)
-                .param(FORM_PARAM_MESSAGE, FORM_PARAM_MESSAGE_VALUE)
-                .param(FORM_PARAM_TMID, FORM_PARAM_TMID_VALUE)
-                .contentType(MediaType.MULTIPART_FORM_DATA)
-                .header(RC_TOKEN_HEADER_PARAMETER_NAME, RC_TOKEN)
-                .header(RC_USER_ID_HEADER_PARAMETER_NAME, RC_USER_ID))
-        .andExpect(status().isCreated());
-  }
-
-  @Test
-  public void uploadFileToFeedbackRoom_Should_ReturnOk_WhenValidRequest() throws Exception {
-
-    MockPart fileToUpload = new MockPart(FORM_PARAM_FILE, "fileToUpload", "content".getBytes());
-
-    mvc.perform(
-            multipart(PATH_UPLOAD_FILE_TO_FEEDBACK_ROOM + "/" + RC_ROOM_ID)
                 .part(fileToUpload)
                 .param(FORM_PARAM_SEND_NOTIFICATION, FORM_PARAM_SEND_NOTIFICATION_TRUE)
                 .param(FORM_PARAM_DESCRIPTION, FORM_PARAM_DESCRIPTION_VALUE)
@@ -257,22 +185,6 @@ public class UploadControllerTestIT {
   }
 
   @Test
-  public void uploadFileToFeedbackRoom_Should_ReturnOk_When_notRequiredParamsAreMissing()
-      throws Exception {
-
-    MockPart fileToUpload = new MockPart(FORM_PARAM_FILE, "fileToUpload", "content".getBytes());
-
-    mvc.perform(
-            multipart(PATH_UPLOAD_FILE_TO_FEEDBACK_ROOM + "/" + RC_ROOM_ID)
-                .part(fileToUpload)
-                .param(FORM_PARAM_SEND_NOTIFICATION, FORM_PARAM_SEND_NOTIFICATION_TRUE)
-                .contentType(MediaType.MULTIPART_FORM_DATA)
-                .header(RC_TOKEN_HEADER_PARAMETER_NAME, RC_TOKEN)
-                .header(RC_USER_ID_HEADER_PARAMETER_NAME, RC_USER_ID))
-        .andExpect(status().isCreated());
-  }
-
-  @Test
   public void uploadFileToRoom_Should_ReturnForbiddenWithCustomHeader_When_quotaLimitIsReached()
       throws Exception {
     doThrow(new QuotaReachedException(LogService::logWarning))
@@ -310,24 +222,6 @@ public class UploadControllerTestIT {
                 .param(FORM_PARAM_DESCRIPTION, FORM_PARAM_DESCRIPTION_VALUE)
                 .param(FORM_PARAM_MESSAGE, FORM_PARAM_MESSAGE_VALUE)
                 .param(FORM_PARAM_TMID, FORM_PARAM_TMID_VALUE)
-                .contentType(MediaType.MULTIPART_FORM_DATA)
-                .header(RC_TOKEN_HEADER_PARAMETER_NAME, RC_TOKEN)
-                .header(RC_USER_ID_HEADER_PARAMETER_NAME, RC_USER_ID))
-        .andExpect(status().isUnsupportedMediaType());
-  }
-
-  @Test
-  public void uploadFileToFeedbackRoom_should_return_unsupported_media_type_on_InvalidFileTypeException()
-      throws Exception {
-    doThrow(InvalidFileTypeException.class).when(uploadFacade)
-        .uploadFileToFeedbackRoom(any(RocketChatCredentials.class),
-            any(RocketChatUploadParameter.class), anyBoolean(), nullable(String.class), nullable(String.class));
-    MockPart fileToUpload = new MockPart(FORM_PARAM_FILE, "fileToUpload", "content".getBytes());
-
-    mvc.perform(
-            multipart(PATH_UPLOAD_FILE_TO_FEEDBACK_ROOM + "/" + RC_ROOM_ID)
-                .part(fileToUpload)
-                .param(FORM_PARAM_SEND_NOTIFICATION, FORM_PARAM_SEND_NOTIFICATION_TRUE)
                 .contentType(MediaType.MULTIPART_FORM_DATA)
                 .header(RC_TOKEN_HEADER_PARAMETER_NAME, RC_TOKEN)
                 .header(RC_USER_ID_HEADER_PARAMETER_NAME, RC_USER_ID))

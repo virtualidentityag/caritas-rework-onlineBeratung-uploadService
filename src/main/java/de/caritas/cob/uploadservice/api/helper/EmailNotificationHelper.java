@@ -49,16 +49,6 @@ public class EmailNotificationHelper {
     sendEmailNotificationCallingMethod(rcGroupId, userControllerApi::sendNewMessageNotification);
   }
 
-  @Async
-  public void sendEmailFeedbackNotificationViaUserService(
-      String rcGroupId, String accessToken,
-      Optional<Long> currentTenant) {
-    var userControllerApi = userServiceApiControllerFactory.createControllerApi();
-    addDefaultHeaders(userControllerApi.getApiClient(), accessToken, currentTenant);
-    sendEmailNotificationCallingMethod(rcGroupId,
-        userControllerApi::sendNewFeedbackMessageNotification);
-  }
-
   private void sendEmailNotificationCallingMethod(String rcGroupId, Consumer<NewMessageNotificationDTO> newMessageNotificationConsumerMethod) {
     try {
       NewMessageNotificationDTO notificationDto = new NewMessageNotificationDTO().rcGroupId(

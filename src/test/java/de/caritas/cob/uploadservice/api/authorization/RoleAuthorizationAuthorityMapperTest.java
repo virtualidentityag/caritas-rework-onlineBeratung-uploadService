@@ -28,7 +28,6 @@ public class RoleAuthorizationAuthorityMapperTest {
       Sets.newSet(
           UserRole.USER.getValue(),
           UserRole.CONSULTANT.getValue(),
-          UserRole.PEER_CONSULTANT.getValue(),
           UserRole.ANONYMOUS.getValue());
 
   @Test
