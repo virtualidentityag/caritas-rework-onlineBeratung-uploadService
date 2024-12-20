@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.0](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/compare/v1.12.0...v1.13.0) (2024-12-20)
+
+
+### Features
+
+* integrate with spring cloud ([ef629f3](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/ef629f3dfa76186b795468d3884e7ab593957987))
+
+
+### Bug Fixes
+
+* CARITAS-243 ([69a3d41](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/69a3d4180e5d4a8d038528b8760b3b4b822fec1e))
+* CARITAS-243 ([9cd874d](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/9cd874db95dcc75172cff92482bb3456d3775d09))
+* CARITAS-243 ([1584107](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/1584107a82d0ef723a619102e390f3576bad98da))
+* CARITAS-243 ([4a5201f](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/4a5201fd294e11aeba505252df2c346a9b643a45))
+* CARITAS-243 ([3a1f015](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/3a1f015d8082044ad457c90f6223d58ce15e56dd))
+* CARITAS-243 ([f11f17a](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/f11f17ad56495ddcbd94de7315d4476d7f587816))
+* CARITAS-243 ([f3b2e5b](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/f3b2e5bbea47a2c1aa8527cc21a85ffbcc446d9d))
+* CARITAS-243 ([a63a538](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/a63a5388ed224b9c8f599c4280f4eb214d1c72d0))
+* CARITAS-243 ([fe0fb53](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/fe0fb53e8374649adff79269cb6897c2a71b0817))
+* CARITAS-243 ([f0a532a](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/f0a532a9bbe554dd5a78ebefe7061e859f2103c7))
+* CARITAS-243 ([8903590](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/8903590d417c47c6060ebcbbf0a4fca08a291e59))
+* CARITAS-243 ([dd26e6c](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/dd26e6c1e5f2ec32bb5d16e885bef3df3ff0a66d))
+* upgrade patch version of spring boot ([3205494](https://github.com/virtualidentityag/caritas-onlineBeratung-uploadService/commit/3205494bc59947f225a2a38677f7051393c5759d))
+
 ## 1.12.0 (2024-06-18)
 
 
