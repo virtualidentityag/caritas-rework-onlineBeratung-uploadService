@@ -35,7 +35,7 @@ paths:
       tags:
         - upload-controller
       summary: 'Upload a file and send a message to a Rocket.Chat room [Authorization:
-        Role: user, anonymous, consultant]'
+        Role: user, consultant]'
       operationId: uploadFileToRoom
       parameters:
         - name: roomId
