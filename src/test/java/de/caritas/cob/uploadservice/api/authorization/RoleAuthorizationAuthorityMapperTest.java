@@ -27,8 +27,7 @@ public class RoleAuthorizationAuthorityMapperTest {
   private final Set<String> roles =
       Sets.newSet(
           UserRole.USER.getValue(),
-          UserRole.CONSULTANT.getValue(),
-          UserRole.ANONYMOUS.getValue());
+          UserRole.CONSULTANT.getValue());
 
   @Test
   public void roleAuthorizationAuthorityMapper_Should_GrantCorrectAuthorities() {

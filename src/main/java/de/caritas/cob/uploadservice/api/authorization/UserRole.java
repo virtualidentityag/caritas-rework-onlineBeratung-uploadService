@@ -10,8 +10,7 @@ import lombok.Getter;
 public enum UserRole {
   USER("user"),
   CONSULTANT("consultant"),
-  TECHNICAL("technical"),
-  ANONYMOUS("anonymous");
+  TECHNICAL("technical");
 
   private final String value;
 
