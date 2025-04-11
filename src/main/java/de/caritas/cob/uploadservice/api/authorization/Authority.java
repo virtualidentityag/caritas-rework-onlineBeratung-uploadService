@@ -1,6 +1,5 @@
 package de.caritas.cob.uploadservice.api.authorization;
 
-import static de.caritas.cob.uploadservice.api.authorization.Authority.AuthorityValue.ANONYMOUS_DEFAULT;
 import static de.caritas.cob.uploadservice.api.authorization.Authority.AuthorityValue.CONSULTANT_DEFAULT;
 import static de.caritas.cob.uploadservice.api.authorization.Authority.AuthorityValue.TECHNICAL_DEFAULT;
 import static de.caritas.cob.uploadservice.api.authorization.Authority.AuthorityValue.USER_DEFAULT;
@@ -22,8 +21,7 @@ public enum Authority {
 
   USER(UserRole.USER, singletonList(USER_DEFAULT)),
   CONSULTANT(UserRole.CONSULTANT, singletonList(CONSULTANT_DEFAULT)),
-  TECHNICAL(UserRole.TECHNICAL, singletonList(TECHNICAL_DEFAULT)),
-  ANONYMOUS(UserRole.ANONYMOUS, singletonList(ANONYMOUS_DEFAULT));
+  TECHNICAL(UserRole.TECHNICAL, singletonList(TECHNICAL_DEFAULT));
 
   private final UserRole userRole;
   private final List<String> grantedAuthorities;
@@ -53,7 +51,6 @@ public enum Authority {
     public static final String CONSULTANT_DEFAULT = PREFIX + "CONSULTANT_DEFAULT";
     public static final String USER_DEFAULT = PREFIX + "USER_DEFAULT";
     public static final String TECHNICAL_DEFAULT = PREFIX + "TECHNICAL_DEFAULT";
-    public static final String ANONYMOUS_DEFAULT = PREFIX + "ANONYMOUS_DEFAULT";
 
   }
 

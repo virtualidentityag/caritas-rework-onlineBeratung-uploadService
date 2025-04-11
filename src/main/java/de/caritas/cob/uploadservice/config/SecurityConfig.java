@@ -1,6 +1,5 @@
 package de.caritas.cob.uploadservice.config;
 
-import static de.caritas.cob.uploadservice.api.authorization.Authority.AuthorityValue.ANONYMOUS_DEFAULT;
 import static de.caritas.cob.uploadservice.api.authorization.Authority.AuthorityValue.CONSULTANT_DEFAULT;
 import static de.caritas.cob.uploadservice.api.authorization.Authority.AuthorityValue.TECHNICAL_DEFAULT;
 import static de.caritas.cob.uploadservice.api.authorization.Authority.AuthorityValue.USER_DEFAULT;
@@ -94,7 +93,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         .antMatchers("/uploads/messages/key")
         .hasAuthority(TECHNICAL_DEFAULT)
         .antMatchers("/uploads/new/{roomId:[0-9A-Za-z]+}")
-        .hasAnyAuthority(USER_DEFAULT, CONSULTANT_DEFAULT, ANONYMOUS_DEFAULT)
+        .hasAnyAuthority(USER_DEFAULT, CONSULTANT_DEFAULT)
         .anyRequest()
         .denyAll();
   }

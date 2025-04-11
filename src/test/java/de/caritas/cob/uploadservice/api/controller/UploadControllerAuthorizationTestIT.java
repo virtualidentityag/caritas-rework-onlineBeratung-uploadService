@@ -153,25 +153,4 @@ public class UploadControllerAuthorizationTestIT {
     verifyNoMoreInteractions(rocketChatService);
     verifyNoMoreInteractions(uploadFacade);
   }
-
-  @Test
-  @WithMockUser(authorities = {AuthorityValue.ANONYMOUS_DEFAULT})
-  public void uploadFileToRoom_Should_ReturnCreated_When_AnonymousAuthority()
-      throws Exception {
-    MockMultipartFile file = new MockMultipartFile("file", "filename", "text/plain",
-        "content".getBytes());
-
-    mvc.perform(
-        multipart(PATH_UPLOAD_FILE_TO_ROOM + "/" + RC_ROOM_ID)
-            .file(file)
-            .param("sendNotification", "true")
-            .cookie(csrfCookie)
-            .header(CSRF_HEADER, CSRF_VALUE)
-            .header(RC_TOKEN_HEADER_PARAMETER_NAME, RC_TOKEN)
-            .header(RC_USER_ID_HEADER_PARAMETER_NAME, RC_USER_ID)
-            .contentType(MediaType.MULTIPART_FORM_DATA)
-            .accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isCreated());
-  }
-
 }
